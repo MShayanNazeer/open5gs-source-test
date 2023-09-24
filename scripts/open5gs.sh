@@ -22,6 +22,21 @@ modprobe -rf sctp
 sudo iptables -t nat -A POSTROUTING -s 10.45.0.0/16 ! -o ogstun -j MASQUERADE
 sudo ip6tables -t nat -A POSTROUTING -s 2001:230:cafe::/48 ! -o ogstun -j MASQUERADE
 
+#install mongosh
+
+# Import the MongoDB GPG key
+wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+
+# Add the MongoDB repository
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+
+# Update the package list
+sudo apt-get update
+
+# Install MongoDB Shell
+sudo apt-get install -y mongodb-mongosh
+export PATH="/usr/bin/mongosh:$PATH"
+
 
 # install open5gs
 apt -y update
