@@ -149,9 +149,9 @@ git clone https://github.com/open5gs/open5gs
 cd open5gs/misc/db
 
 # add default ue subscriber so user doesn't have to log into web ui
-opc="E8ED289DEBA952E4283B54E88E6183CA"
-upper=$(($NUM_UE_ - 1))
-for i in $(seq 0 $upper); do
-    newkey=$(printf "%0.s$i" {1..32}) # example: 33333333333333333333333333333333
-    ./open5gs-dbctl add 90170000000000$i $newkey $opc
-done                                              
+# opc="E8ED289DEBA952E4283B54E88E6183CA"
+# upper=$(($NUM_UE_ - 1))
+# for i in $(seq 0 $upper); do
+#     newkey=$(printf "%0.s$i" {1..32}) # example: 33333333333333333333333333333333
+#     ./open5gs-dbctl add 90170000000000$i $newkey $opc
+# done                                              
