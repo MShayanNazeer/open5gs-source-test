@@ -58,7 +58,7 @@ cd open5gs/webui
 npm ci
 # npm run dev
 
-
+curl -fsSL https://open5gs.org/open5gs/assets/webui/install | sudo -E bash -
 # curl -fsSL https://pgp.mongodb.com/server-6.0.asc | \
 #     sudo gpg -o /usr/share/keyrings/mongodb-server-6.0.gpg --dearmor
 # echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-6.0.gpg ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/6.0 multiverse" | \
@@ -90,6 +90,7 @@ sudo systemctl restart open5gs-pcfd
 sudo systemctl restart open5gs-nssfd
 sudo systemctl restart open5gs-bsfd
 sudo systemctl restart open5gs-udrd
+sudo systemctl restart open5gs-webui
 
 # cd $SRCDIR
 # wget https://raw.githubusercontent.com/open5gs/open5gs/main/misc/db/open5gs-dbctl
@@ -109,7 +110,7 @@ opc="E8ED289DEBA952E4283B54E88E6183CA"
 upper=$(($NUM_UE_ - 1))
 for i in $(seq 0 $upper); do
     newkey=$(printf "%0.s$i" {1..32}) # example: 33333333333333333333333333333333
-    ./open5gs-dbctl add 99970000000000$i $newkey $opc
+    ./open5gs-dbctl add 90170000000000$i $newkey $opc
 done                                              
 
-#./open5gs-dbctl add 999700000000001 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA
+#./open5gs-dbctl add 901700000000001 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA
