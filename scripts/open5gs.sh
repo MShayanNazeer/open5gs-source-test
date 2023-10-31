@@ -110,7 +110,7 @@ opc="E8ED289DEBA952E4283B54E88E6183CA"
 upper=$(($NUM_UE_ - 1))
 for i in $(seq 0 $upper); do
     newkey=$(printf "%0.s$i" {1..32}) # example: 33333333333333333333333333333333
-    ./open5gs-dbctl add 90170000000000$i $newkey $opc
+    ./open5gs-dbctl add 99970000000000$i $newkey $opc
 done                                              
 
 #./open5gs-dbctl add 901700000000001 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA
