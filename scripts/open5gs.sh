@@ -1,4 +1,19 @@
-#set -x
+# #set -x
+
+# # load configs 
+# source /local/repository/scripts/setup-config
+
+# ### Enable IPv4/IPv6 Forwarding
+# sysctl -w net.ipv4.ip_forward=1
+# sysctl -w net.ipv6.conf.all.forwarding=1
+# sysctl -w net.ipv4.ip_nonlocal_bind=1
+
+# # sudo iptables -t nat -A POSTROUTING -s 10.45.0.0/16 ! -o ogstun -j MASQUERADE
+#!/bin/bash
+
+#n this script should be run as root
+# print every command
+set -x
 
 # load configs 
 source /local/repository/scripts/setup-config
@@ -7,8 +22,20 @@ source /local/repository/scripts/setup-config
 sysctl -w net.ipv4.ip_forward=1
 sysctl -w net.ipv6.conf.all.forwarding=1
 sysctl -w net.ipv4.ip_nonlocal_bind=1
+#echo "net.ipv4.ip_nonlocal_bind = 1" >> /etc/sysctl.conf
+#sysctl -p /etc/sysctl.conf
 
-# sudo iptables -t nat -A POSTROUTING -s 10.45.0.0/16 ! -o ogstun -j MASQUERADE
+# disable kernel sctp for now
+modprobe -rf sctp
+
+### Add NAT Rule
+# Probably need to change these values?
+sudo iptables -t nat -A POSTROUTING -s 10.45.0.0/16 ! -o ogstun -j MASQUERADE
+sudo ip6tables -t nat -A POSTROUTING -s 2001:230:cafe::/48 ! -o ogstun -j MASQUERADE
+
+
+
+
 
 if [ -f $SRCDIR/open5gs-setup-complete ]; then
     echo "setup already ran; not running again"
