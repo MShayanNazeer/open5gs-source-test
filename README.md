@@ -6,4 +6,4 @@ This profile creates and registers a changeable number of UEs. There is a script
 
 <br />use following command to access webui on remote server
 
-ssh -L 9090:localhost:3000 Shayan@pc{machine number}.emulab.net
+ssh -L 9090:localhost:9999 Shayan@pc{machine number}.emulab.net
