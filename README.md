@@ -4,5 +4,6 @@ This is a [POWDER](https://powderwireless.net/) profile that automatically insta
 
 This profile creates and registers a changeable number of UEs. There is a script at `/local/repository/scripts/connect-all-ues.sh` that can be run on sim-ran node to start and create PDU sessions (and therefore interfaces) for all 10 UEs at once, as well as test them all for internet connectivity.
 
-use following command to access webui on remote server \b
-ssh -L 9090:localhost:3000 Shayan@pc786.emulab.net
+<br />use following command to access webui on remote server
+
+ssh -L 9090:localhost:3000 Shayan@pc{machine number}.emulab.net
