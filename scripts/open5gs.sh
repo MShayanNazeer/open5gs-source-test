@@ -8,7 +8,7 @@
 # sysctl -w net.ipv6.conf.all.forwarding=1
 # sysctl -w net.ipv4.ip_nonlocal_bind=1
 
-# # sudo iptables -t nat -A POSTROUTING -s 10.45.0.0/16 ! -o ogstun -j MASQUERADE
+# # sudo iptables -t nat -A POSTROUTING -s 10.45.0.2/16 ! -o ogstun -j MASQUERADE
 #!/bin/bash
 
 #n this script should be run as root
@@ -126,11 +126,27 @@ sudo systemctl restart open5gs-webui
 # ./open5gs-dbctl type 901700123456789 1  # APN type IPV4
 # touch $SRCDIR/open5gs-setup-complete
 
+echo "Setup 4G/ 5G NSA Core"
+
+cp /local/repository/config/mme.yaml /etc/open5gs/mme.yaml
+cp /local/repository/config/sgwu.yaml /etc/open5gs/sgwu.yaml
+
+systemctl restart open5gs-mmed
+systemctl restart open5gs-sgwud
+
+echo "Setup 5G Core"
+
+cp /local/repository/config/amf.yaml /etc/open5gs/amf.yaml
+cp /local/repository/config/upf.yaml /etc/open5gs/upf.yaml
+
+systemctl restart open5gs-amfd
+systemctl restart open5gs-upfd
 
 # clone open5gs for dbctl script
 cd /root
 git clone https://github.com/open5gs/open5gs
 cd open5gs/misc/db
+
 
 #add default ue subscriber so user doesn't have to log into web ui
 opc="E8ED289DEBA952E4283B54E88E6183CA"
