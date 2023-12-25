@@ -9,7 +9,7 @@ import geni.rspec.emulab as elab
 import geni.rspec.igext as IG
 
 tourDescription = """
-This profile creates a 5G core via [Open5GS](https://github.com/open5gs/open5gs) and connects it to a simulated gNB Base Station and specified number of User Equipment (UE) via [UERANSIM](https://github.com/aligungr/UERANSIM). Everything is set up automatically to be able to connect a single UE to the netwowrk with IMSI 901700000000001.
+This profile creates a 5G core via [Open5GS](https://github.com/open5gs/open5gs) and connects it to a simulated gNB Base Station and specified number of User Equipment (UE) via [UERANSIM](https://github.com/aligungr/UERANSIM). Everything is set up automatically to be able to connect a single UE to the netwowrk with IMSI 901700000000000.
 
 The profile is known to work with UERANSIM v3.1.8 and Open5GS v2.7.0 (as of 25/12/2023). However, the profile downloads and builds the latest versions by default, so breaking changes could occur.
 
