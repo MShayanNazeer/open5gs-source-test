@@ -103,6 +103,23 @@ curl -fsSL https://open5gs.org/open5gs/assets/webui/install | sudo -E bash -
 # sudo apt install -y open5gs
 # sudo cp /local/repository/etc/open5gs/* /etc/open5gs/
 
+# cd $SRCDIR
+# wget https://raw.githubusercontent.com/open5gs/open5gs/main/misc/db/open5gs-dbctl
+# chmod +x open5gs-dbctl
+# ./open5gs-dbctl add_ue_with_apn 901700123456789 00112233445566778899aabbccddeeff 63BFA50EE6523365FF14C1F45F88737D srsapn  # IMSI,K,OPC
+# ./open5gs-dbctl type 901700123456789 1  # APN type IPV4
+# touch $SRCDIR/open5gs-setup-complete
+
+echo "Setup 4G/ 5G NSA Core"
+
+cp /local/repository/config/mme.yaml /etc/open5gs/mme.yaml
+cp /local/repository/config/sgwu.yaml /etc/open5gs/sgwu.yaml
+
+echo "Setup 5G Core"
+
+cp /local/repository/config/amf.yaml /etc/open5gs/amf.yaml
+cp /local/repository/config/upf.yaml /etc/open5gs/upf.yaml
+
 sudo systemctl restart open5gs-mmed
 sudo systemctl restart open5gs-sgwcd
 sudo systemctl restart open5gs-smfd
@@ -119,29 +136,6 @@ sudo systemctl restart open5gs-nssfd
 sudo systemctl restart open5gs-bsfd
 sudo systemctl restart open5gs-udrd
 sudo systemctl restart open5gs-webui
-
-# cd $SRCDIR
-# wget https://raw.githubusercontent.com/open5gs/open5gs/main/misc/db/open5gs-dbctl
-# chmod +x open5gs-dbctl
-# ./open5gs-dbctl add_ue_with_apn 901700123456789 00112233445566778899aabbccddeeff 63BFA50EE6523365FF14C1F45F88737D srsapn  # IMSI,K,OPC
-# ./open5gs-dbctl type 901700123456789 1  # APN type IPV4
-# touch $SRCDIR/open5gs-setup-complete
-
-echo "Setup 4G/ 5G NSA Core"
-
-cp /local/repository/config/mme.yaml /etc/open5gs/mme.yaml
-cp /local/repository/config/sgwu.yaml /etc/open5gs/sgwu.yaml
-
-systemctl restart open5gs-mmed
-systemctl restart open5gs-sgwud
-
-echo "Setup 5G Core"
-
-cp /local/repository/config/amf.yaml /etc/open5gs/amf.yaml
-cp /local/repository/config/upf.yaml /etc/open5gs/upf.yaml
-
-systemctl restart open5gs-amfd
-systemctl restart open5gs-upfd
 
 # clone open5gs for dbctl script
 cd /root
