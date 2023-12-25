@@ -59,6 +59,8 @@ sudo apt install make gcc g++ libsctp-dev lksctp-tools iproute2 git
 sudo snap install cmake --classic
 
 git clone https://github.com/aligungr/UERANSIM
+cp /local/repository/config/ueran-gnb.yaml ~/UERANSIM/config/open5gs-gnb.yaml
+cp /local/repository/config/ueran-ue.yaml ~/UERANSIM/config/open5gs-ue.yaml
 
 cd ~/UERANSIM
 
