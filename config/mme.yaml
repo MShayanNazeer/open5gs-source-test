@@ -8,7 +8,7 @@ global:
 #    peer: 64
 
 mme:
-  freeDiameter: @sysconfdir@/freeDiameter/mme.conf
+  freeDiameter: /etc/freeDiameter/mme.conf
   s1ap:
     server:
       - address: 127.0.0.2
