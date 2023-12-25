@@ -31,6 +31,7 @@ modprobe -rf sctp
 ### Add NAT Rule
 # Probably need to change these values?
 sudo iptables -t nat -A POSTROUTING -s 10.45.0.2/16 ! -o ogstun -j MASQUERADE
+sudo iptables -t nat -A POSTROUTING -s 10.45.0.1/16 ! -o ogstun -j MASQUERADE
 sudo ip6tables -t nat -A POSTROUTING -s 2001:230:cafe::/48 ! -o ogstun -j MASQUERADE
 
 
