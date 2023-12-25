@@ -110,15 +110,6 @@ curl -fsSL https://open5gs.org/open5gs/assets/webui/install | sudo -E bash -
 # ./open5gs-dbctl type 901700123456789 1  # APN type IPV4
 # touch $SRCDIR/open5gs-setup-complete
 
-# echo "Setup 4G/ 5G NSA Core"
-
-# cp /local/repository/config/mme.yaml /etc/open5gs/mme.yaml
-# cp /local/repository/config/sgwu.yaml /etc/open5gs/sgwu.yaml
-
-# echo "Setup 5G Core"
-
-# cp /local/repository/config/amf.yaml /etc/open5gs/amf.yaml
-# cp /local/repository/config/upf.yaml /etc/open5gs/upf.yaml
 
 sudo systemctl restart open5gs-mmed
 sudo systemctl restart open5gs-sgwcd
@@ -152,3 +143,20 @@ for i in $(seq 0 $upper); do
 done                                              
 
 #./open5gs-dbctl add 901700000000001 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA
+
+echo "Setup 4G/ 5G NSA Core"
+
+cp /local/repository/config/mme.yaml /etc/open5gs/mme.yaml
+cp /local/repository/config/sgwu.yaml /etc/open5gs/sgwu.yaml
+
+echo "Setup 5G Core"
+
+cp /local/repository/config/amf.yaml /etc/open5gs/amf.yaml
+cp /local/repository/config/upf.yaml /etc/open5gs/upf.yaml
+
+sudo systemctl restart open5gs-mmed
+sudo systemctl restart open5gs-sgwud
+sudo systemctl restart open5gs-amfd
+sudo systemctl restart open5gs-upfd
+
+
